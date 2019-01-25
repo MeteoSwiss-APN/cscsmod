@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 """Main module."""
-import os, re, subprocess
+import os
+import re
+import subprocess
 from typing import Tuple
 
 if 'MODULE_VERSION' not in os.environ:
@@ -27,19 +29,20 @@ if 'LOADEDMODULES' not in os.environ:
 def module(*args: str) -> Tuple[str, str]:
     """Manages modules at CSCS.
 
-       Module is a user interface to the Modules package. The Modules package 
+       Module is a user interface to the Modules package. The Modules package
        provides for the dynamic modification of the user's environment and make
        applications and libraries available to the user.
 
        Args:
            *args: A sequence of strings. The elements of the sequence correspond
-                  to the commandline arguments of the command module (see 
+                  to the commandline arguments of the command module (see
                   man module).
 
        Returns:
-           A tuple of strings containing the output (stdout, stderr) of the module command.
+           A tuple of strings containing the output (stdout, stderr) of the
+           module command.
     """
-    if type(args[0]) == type([]):
+    if isinstance(args[0], list):
         args = args[0]
     else:
         args = list(args)
