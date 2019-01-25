@@ -4,3 +4,5 @@
 __author__ = """Donat Perler"""
 __email__ = 'donat.perler@meteoswiss.ch'
 __version__ = '0.1.0'
+
+from .cscsmod import module

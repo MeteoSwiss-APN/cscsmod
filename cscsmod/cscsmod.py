@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """Main module."""
 import os, re, subprocess
+from typing import Tuple
 
 if 'MODULE_VERSION' not in os.environ:
     os.environ['MODULE_VERSION_STACK'] = '3.2.10'
@@ -23,7 +24,7 @@ if 'LOADEDMODULES' not in os.environ:
     os.environ['LOADEDMODULES'] = ''
 
 
-def module(*args: str) -> str:
+def module(*args: str) -> Tuple[str, str]:
     """Manages modules at CSCS.
 
        Module is a user interface to the Modules package. The Modules package 
@@ -36,7 +37,7 @@ def module(*args: str) -> str:
                   man module).
 
        Returns:
-           A string containing the output of the module command.
+           A tuple of strings containing the output (stdout, stderr) of the module command.
     """
     if type(args[0]) == type([]):
         args = args[0]
@@ -47,5 +48,7 @@ def module(*args: str) -> str:
             '/cm/local/apps/environment-modules/3.2.10/Modules/%s/bin/modulecmd'
             % os.environ['MODULE_VERSION'], 'python'
         ] + args,
-        stdout=subprocess.PIPE, stderr=subprocess.PIPE, encoding="utf-8").communicate()
-    return error + "\n" + output if error else output
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        encoding="utf-8").communicate()
+    return output, error
