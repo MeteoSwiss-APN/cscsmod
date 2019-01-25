@@ -4,14 +4,14 @@ CSCS Module Loader
 
 
 
-Utility function to load modules at CSCS.
+Utility function to manage modules Package at CSCS.
 
 
 
 Features
 --------
 
-* TODO
+* Full access to the module command (for detail see man module)
 
 Credits
 -------
