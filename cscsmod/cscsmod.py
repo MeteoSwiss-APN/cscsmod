@@ -47,5 +47,5 @@ def module(*args: str) -> str:
             '/cm/local/apps/environment-modules/3.2.10/Modules/%s/bin/modulecmd'
             % os.environ['MODULE_VERSION'], 'python'
         ] + args,
-        stdout=subprocess.PIPE).communicate()
-    exec(output)
+        stdout=subprocess.PIPE, stderr=subprocess.PIPE, encoding="utf-8").communicate()
+    return error + "\n" + output if error else output
